@@ -49,8 +49,8 @@ int reg2int(char *reg)
 
 int main(int argc, char *argv[])
 {
-    int ins[100];                       //instructions
-    char prog[500];                     //the string reading from the input file
+    int ins[100];
+    char prog[500];
     char buf[5000];
     int l;
     for ( l = 0; l < 5000; ++l) {
@@ -58,9 +58,8 @@ int main(int argc, char *argv[])
     }
 
     int pc = 0;
-    char *labname, *reg1, *reg2, *op, *key, *ss;     //elements of decoded ins
+    char *labname, *reg1, *reg2, *op, *key, *ss;
     FILE *f = fopen(argv[1], "r");
-    //FILE *f = fopen("shuffle.asm", "r");
     int addr[100];
     int cons = 0;
     int end = 0;
@@ -72,7 +71,8 @@ int main(int argc, char *argv[])
         int addr;
     };
     struct label labtable[100];
-    for (int w = 0; w < 100;w++)
+    int w;
+    for (w = 0; w < 100;w++)
         labtable[w].addr = 0;
     int label_count = 0;
     int exist = 0;
@@ -98,7 +98,8 @@ int main(int argc, char *argv[])
     while(fgets(prog, 500, f) != NULL)
     {
         strcpy(line, prog);
-        for (int g = 0; g < 200; g++) {
+        int g;
+        for (g = 0; g < 200; g++) {
             line[g] = (char) toupper(line[g]);
             if(line[g] == '\0'||line[g] == ';'||line[g] == '\n') {
                 line[g] = ' ';
@@ -108,14 +109,12 @@ int main(int argc, char *argv[])
         }
         strcat(buf,line);
     }
-    //fgets(prog, 500, f);
 
-    //fscanf(f,"%s",prog);
 
                     /* Initialization*/
 
         key = strtok(buf, " \r\n\t,");
-        if (strcmp(key, ".ORIG") != 0)      //first command is not .ORIG
+        if (strcmp(key, ".ORIG") != 0)
             exit(4);
 
         key = strtok(NULL, " \n\t\r,");
@@ -128,7 +127,7 @@ int main(int argc, char *argv[])
 
         addr[0] = 0;
         int e;
-        for(e = 1;e <100; e++)              //configure address of instructions
+        for(e = 1;e <100; e++)
         {
             addr[e] = cons + 2*(e-1);
         }
@@ -137,7 +136,7 @@ int main(int argc, char *argv[])
 
                          /* First Pass*/
 
-        key = strtok(NULL, " \n\t\r,"); //skip .ORIG and its value
+        key = strtok(NULL, " \n\t\r,");
         while (key != NULL)
         {
             if (strcmp(key, "ADD") == 0)
@@ -734,12 +733,14 @@ int main(int argc, char *argv[])
                             /* The Second pass */
     int labeladdr = 0;
     int insaddr = 0;
-    for (int d = 0; d < label_count;d++)
+    int d;
+    for (d = 0; d < label_count;d++)
     {
         if(labtable[d].addr == -1)
             exit(1);
     }
-    for (int i = 0; i < jmp_count;i++)
+    int i;
+    for (i = 0; i < jmp_count;i++)
     {
         if(jumptable[i].pc != 0)
         {
