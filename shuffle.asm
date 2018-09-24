@@ -30,7 +30,7 @@ HIT LDB R6, R4, #0
 	AND R1, R1, #0
 	ADD R1, R1, #12  ;set R1 to 0b1100
 	AND R1, R1, R0
-	FSHFL R1, R1, #2
+	RSHFL R1, R1, #2
 	ADD R1, R1, #1   ;R1 varies from 1 to 4
 
 LOOP ADD R1, R1, #-1
@@ -46,9 +46,10 @@ HIT LDB R6, R4, #0
 	LDW R4, R4, #0   ;RESET address of R4
 
 	AND R1, R1, #0
-	ADD R1, R1, x30  ;set R1 to 0b110000
+	ADD R1, R1, #3
+	LSHF R1, R1, #4  ;set R1 to 0b110000
 	AND R1, R1, R0
-	FSHFL R1, R1, #4
+	RSHFL R1, R1, #4
 	ADD R1, R1, #1   ;R1 varies from 1 to 4
 
 LOOP ADD R1, R1, #-1
@@ -64,9 +65,10 @@ HIT LDB R6, R4, #0
 	LDW R4, R4, #0   ;RESET address of R4
 
 	AND R1, R1, #0
-	ADD R1, R1, xC0  ;set R1 to 0b11000000
+	ADD R1, R1, #3
+	LSHF R1, R1, #6  ;set R1 to 0b11000000
 	AND R1, R1, R0
-	FSHFL R1, R1, #6
+	RSHFL R1, R1, #6
 	ADD R1, R1, #1   ;R1 varies from 1 to 4
 
 LOOP ADD R1, R1, #-1
@@ -79,4 +81,5 @@ HIT LDB R6, R4, #0
 OLD .FILL x4000
 MASK .FILL x4004
 NEW .FILL x4005
+HALT
 .END

@@ -51,16 +51,16 @@ int main(int argc, char *argv[])
 {
     int ins[100];                       //instructions
     char prog[500];                     //the string reading from the input file
-    char buf[500];
+    char buf[5000];
 
-    for (int l = 0; l < 500; ++l) {
+    for (int l = 0; l < 5000; ++l) {
         buf[l] = '\0';
     }
 
     int pc = 0;
     char *labname, *reg1, *reg2, *op, *key, *ss;     //elements of decoded ins
     FILE *f = fopen(argv[1], "r");
-    //FILE *f = fopen("source.asm", "r");
+    //FILE *f = fopen("shuffle.asm", "r");
     int addr[100];
     int cons = 0;
     int end = 0;
