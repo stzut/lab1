@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
     int ins[100];                       //instructions
     char prog[500];                     //the string reading from the input file
     char buf[5000];
-
-    for (int l = 0; l < 5000; ++l) {
+    int l;
+    for ( l = 0; l < 5000; ++l) {
         buf[l] = '\0';
     }
 
@@ -127,7 +127,8 @@ int main(int argc, char *argv[])
             exit(3);
 
         addr[0] = 0;
-        for(int e = 1;e <100; e++)              //configure address of instructions
+        int e;
+        for(e = 1;e <100; e++)              //configure address of instructions
         {
             addr[e] = cons + 2*(e-1);
         }
@@ -771,7 +772,8 @@ int main(int argc, char *argv[])
     }
     fclose(f);
     fopen(argv[2],"w");
-    for(int ww = 0; ww < pc;ww++)
+    int ww;
+    for(ww = 0; ww < pc;ww++)
     {
         fprintf(f,"0x%.4X\n", ins[ww]);
     }
